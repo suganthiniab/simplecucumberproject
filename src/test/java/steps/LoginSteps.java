@@ -6,20 +6,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public class LoginSteps {
 
-    private WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+    //WebDriver driver = BaseSteps.getDriver();
+    WebDriver driver;
 
-    @Given("User opens chrome browser")
+    public LoginSteps(){
+        this.driver = BaseSteps.driver;
+    }
+
+   /* @Given("User opens chrome browser")
     public void user_opens_chrome_browser() {
         driver = new ChromeDriver();
-    }
+        driver.manage().window().maximize();
+    }*/
 
     @Given("User is on Log in page")
     public void user_is_on_log_in_page() {
@@ -57,7 +61,7 @@ public class LoginSteps {
         String expectedFlashText = "Epic sadface: Username and password do not match any user in this service";
         //driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
         WebElement errorFlash = driver.findElement(By.xpath("//h3/button[@class='error-button']"));
-        wait.until(ExpectedConditions.visibilityOf(errorFlash));
+        //wait.until(ExpectedConditions.visibilityOf(errorFlash));
         String actualFlashText = errorFlash.getText().trim();
         Assert.assertTrue(expectedFlashText.contains(actualFlashText));
 
@@ -72,6 +76,6 @@ public class LoginSteps {
 
     @And("User exits the browser")
     public void userExitsTheBrowser() {
-        driver.close();
+        driver.quit();
     }
 }

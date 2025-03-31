@@ -4,7 +4,11 @@ Feature: Cart Items Total
   I want to successfully place an order with correct amount and total
 
   Scenario: Order placed with 2 items successfully
-    Given User logs in the sauce demo application successfully
+    #Given User opens chrome browser
+    And User is on Log in page
+    When User enters valid username standard_user and password secret_sauce
+    Then User should successfully login
+    And User should be on inventory page
     And User adds Bolt T-Shirt and Red T-Shirt to the cart
     And User clicks on Cart icon
     And User clicks on Checkout button
@@ -15,7 +19,11 @@ Feature: Cart Items Total
     And User should be on checkout-complete page
 
   Scenario: Order placed with 2 items with correct total amount and tax calculations
-    Given User logs in the sauce demo application successfully
+    #Given User opens chrome browser
+    And User is on Log in page
+    When User enters valid username standard_user and password secret_sauce
+    Then User should successfully login
+    And User should be on inventory page
     And User adds Bolt T-Shirt and Red T-Shirt to the cart
     And User clicks on Cart icon
     And User reads and stores the prices of the products
